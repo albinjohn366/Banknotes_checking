@@ -5,10 +5,11 @@ import random
 # Creating data for training
 with open('banknotes.csv') as file:
     contents = csv.reader(file)
+    next(contents)
 
     data = []
     for row in contents:
-        data.append({'evidence': [cell for cell in row[:4]],
+        data.append({'evidence': [float(cell) for cell in row[:4]],
                      'label': 'Authentic' if row[4] == '0' else 'Counterfeit'})
 
 # Creating the model
@@ -40,7 +41,9 @@ for actual, prediction in zip(y_testing, predictions):
         incorrect += 1
 
 # Printing the number of correct and incorrect answers
-print('The number of correct prediction is {} which is {} percentage'.format(
+print('The number of correct prediction is {} which is {:.2f} '
+      'percentage'.format(
     correct, correct / total * 100))
-print('The number of incorrect prediction is {} which is {} percentage'.format(
+print('The number of incorrect prediction is {} which is {:.2f} '
+      'percentage'.format(
     incorrect, incorrect / total * 100))
