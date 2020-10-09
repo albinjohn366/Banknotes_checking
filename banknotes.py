@@ -43,7 +43,7 @@ for actual, prediction in zip(y_testing, predictions):
 # Printing the number of correct and incorrect answers
 print('The number of correct prediction is {} which is {:.2f} '
       'percentage'.format(
-    correct, correct / total * 100))
+        correct, correct / total * 100))
 print('The number of incorrect prediction is {} which is {:.2f} '
       'percentage'.format(
-    incorrect, incorrect / total * 100))
+        incorrect, incorrect / total * 100))
