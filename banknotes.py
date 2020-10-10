@@ -1,5 +1,4 @@
-# from sklearn.linear_model import Perceptron
-from sklearn import svm
+from sklearn.neighbors import KNeighborsClassifier
 import csv
 import random
 
@@ -14,7 +13,7 @@ with open('banknotes.csv') as file:
                      'label': 'Authentic' if row[4] == '0' else 'Counterfeit'})
 
 # Creating the model
-model = svm.SVC()
+model = KNeighborsClassifier(n_neighbors=3)
 
 # Separating the model for testing and training
 holdout = int(0.5 * len(data))
