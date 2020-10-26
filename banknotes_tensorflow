@@ -1,5 +1,6 @@
 import tensorflow as tf
 import csv
+from sklearn.model_selection import train_test_split
 
 
 # Loading evidences and labels
@@ -18,5 +19,17 @@ def load_data(file):
 
 
 def main():
-    # Loading data
     evidences, labels = load_data('banknotes.csv')
+    x_train, x_test, y_train, y_test = train_test_split(evidences, labels,
+                                                        test_size=0.4)
+    model = tf.keras.Sequential()
+    model.add(tf.keras.layers.Dense(8, input_shape=(4,), activation='relu'))
+    model.add(tf.keras.layers.Dense(1, activation='sigmoid'))
+    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=[
+        'accuracy'])
+    model.fit(x_train, y_train, epochs=20)
+    model.evaluate(x_test, y_test, verbose=2)
+
+
+if __name__ == '__main__':
+    main()
